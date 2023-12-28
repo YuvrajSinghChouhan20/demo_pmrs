@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row mt-5">
+    <h1>List Porperties</h1>
+
+    <%= form_with(model: @property, url: "/property", class: "row g-3") do |form| %>
+      <div class="col-md-12">
+        <span class="mr-5 my-3 fs-5">For : </span>
+
+        <%= form.radio_button :listed_for, 'Rent', type: "radio", class: "form-check btn-check", autocomplete: "off", checked: true  %>
+        <%= form.label :Rent, class: "btn btn-outline-dark", for: "listed_for_rent", value: "Rent"  %>
+
+        <%= form.radio_button :listed_for, 'Sale', type: "radio", class: "form-check btn-check", autocomplete: "off", checked: true  %>
+        <%= form.label :Sale, class: "btn btn-outline-dark", for: "listed_for_sale", value: "sale"  %>
+
+      </div>
+      <div class="col-md-6">
+        <%= text_field_with_label(form, :registration_no) %>
+      </div>
+
+      <div class="col-md-12">
+        <%= form.label :address, class: 'form-label' %>
+        <%= form.text_area :address, autocomplete: "address", class: "form-control" %>
+      </div>
+
+      <div class="col-md-6">
+        <%= text_field_with_label(form, :city) %>
+      </div>
+
+      <div class="col-md-4">
+        <%= form.label :State, class: "form-label"%>
+        <%= form.select :city, %w[ Delhi Mumbai Banglore Indore],{}, class: "form-select" %>
+      </div>
+
+      <div class="col-md-2">
+        <%= form.label :zip, class: "form-label"%>
+        <%= form.number_field :zip, autofocus: true, autocomplete: "zip", class: "form-control" %>
+      </div>
+
+
+      <div class="col-md-6">
+        <%= form.label :Images, class: "form-label" %>
+        <%= form.file_field :attachment, multiple: "multiple", autocomplete: "new-password", class: "form-control" %>
+      </div>
+
+
+
+      <div class="col-12 my-3">
+        <%= form.submit "Submit", class: "btn btn-lg btn-dark" %>
+      </div>
+
+    <% end %>
+  </div>
+</div>
+
