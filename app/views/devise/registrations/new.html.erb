@@ -7,11 +7,13 @@
 
 
       <div class="col-md-6">
-        <%= text_field_with_label(form, :first_name) %>
+        <%= form.label :first_name, class: "form-label"%>
+        <%= form.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "form-control" %>
       </div>
 
       <div class="col-md-6">
-        <%= text_field_with_label(form, :last_name) %>
+        <%= form.label :last_name, class: "form-label"%>
+        <%= form.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "form-control" %>
       </div>
 
       <div class="col-6">
@@ -20,7 +22,8 @@
       </div>
 
       <div class="col-6">
-        <%= text_field_with_label(form, :email) %>
+        <%= form.label :email, class: "form-label" %><br />
+        <%= form.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"  %>
       </div>
 
       <div class="col-md-12">
@@ -29,12 +32,13 @@
       </div>
 
       <div class="col-md-6">
-        <%= text_field_with_label(form, :city) %>
+        <%= form.label :city, class: "form-label"%>
+        <%= form.text_field :city, autofocus: true, autocomplete: "city", class: "form-control" %>
       </div>
 
       <div class="col-md-4">
-        <%= form.label :State, class: "form-label"%>
-        <%= form.select :city, %w[ Delhi Mumbai Banglore Indore],{}, class: "form-select" %>
+        <%= form.label :state, class: "form-label"%>
+        <%= form.select :state, %w[ Delhi Rajasthan Uttar-Predesh Madhya-Pradesh],{}, class: "form-select" %>
       </div>
 
       <div class="col-md-2">

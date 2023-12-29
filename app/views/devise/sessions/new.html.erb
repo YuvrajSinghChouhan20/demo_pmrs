@@ -4,7 +4,8 @@
       <h1>Log in</h1>
       <%= form_with(model: resource, as: resource_name, url: session_path(resource_name), class: "form row g-3") do |form| %>
         <div class="col-md-12">
-          <%= text_field_with_label(form, :email) %>
+          <%= form.label :email, class: "form-label" %><br />
+          <%= form.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"  %>
         </div>
 
         <div class="col-md-12">

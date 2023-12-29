@@ -7,6 +7,7 @@ class CreateProperties < ActiveRecord::Migration[7.1]
       t.string :country
       t.integer :zipcode
       t.string :property_type
+      t.string :property_sub_type
       t.string :listed_for
       t.string :size
       t.string :status

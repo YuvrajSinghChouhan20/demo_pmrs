@@ -7,6 +7,7 @@ one:
   country: MyString
   zipcode: 1
   property_type: MyString
+  property_sub_type: MyString
   listed_for: MyString
   size: MyString
   status: MyString
@@ -18,6 +19,7 @@ two:
   country: MyString
   zipcode: 1
   property_type: MyString
+  property_sub_type: MyString
   listed_for: MyString
   size: MyString
   status: MyString
