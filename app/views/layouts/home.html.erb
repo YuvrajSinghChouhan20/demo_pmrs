@@ -1,0 +1,9 @@
+<%= content_for :stylesheets do %>
+  <%= stylesheet_link_tag "home", "data-turbo-track": "reload" %>
+<% end %>
+
+<%= content_for :content do %>
+  <%= yield %>
+<%end%>
+
+<%= render template: "layouts/application" %>

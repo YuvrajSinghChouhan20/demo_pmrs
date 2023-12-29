@@ -5,3 +5,6 @@ import "controllers"
 // importing javascript to java script
 import "popper"
 import "bootstrap"
+
+
+let property_type = document.getElementById("property")
