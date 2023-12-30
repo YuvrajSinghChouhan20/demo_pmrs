@@ -7,10 +7,10 @@
         <p class="mb-2">You are looking to...</p>
 
         <%= form.radio_button :listed_for, 'Rent', type: "radio", class: "form-check btn-check", autocomplete: "off", checked: true  %>
-        <%= form.label :Rent, class: "btn btn-outline-dark btn-sm px-3 mx-1 rounded-5", for: "listed_for_rent", value: "Rent/Lease"  %>
+        <%= form.label :listed_for, class: "btn btn-outline-dark btn-sm px-3 mx-1 rounded-5", for: "property_listed_for_rent", value: "Rent"  %>
 
         <%= form.radio_button :listed_for, 'Sale', type: "radio", class: "form-check btn-check", autocomplete: "off" %>
-        <%= form.label :Sale, class: "btn btn-outline-dark btn-sm px-3 mx-1 rounded-5", for: "listed_for_sale", value: "Sell"  %>
+        <%= form.label :listed_for, class: "btn btn-outline-dark btn-sm px-3 mx-1 rounded-5", for: "property_listed_for_sale", value: "Sell"  %>
 
       </div>
 
@@ -20,48 +20,34 @@
         <div class="form-check form-check-inline">
 
           <%= form.radio_button :property_type, 'residential', type: "radio", class: "form-check-input", checked: true  %>
-          <%= form.label :residential, class: "form-check-label", for: "property_type_residential", value: "residential"  %>
+          <%= form.label :residential, class: "form-check-label", for: "property_property_type_residential", value: "residential"  %>
 
         </div>
         <div class="form-check form-check-inline">
-          <%= form.radio_button :property_type, 'residential', type: "radio", class: "form-check-input" %>
-          <%= form.label :commercial, class: "form-check-label", for: "property_type_commercial", value: "commercial"  %>
+          <%= form.radio_button :property_type, 'commercial', type: "radio", class: "form-check-input" %>
+          <%= form.label :commercial, class: "form-check-label", for: "property_property_type_commercial", value: "commercial"  %>
         </div>
 
         <div class="sub_residential_property_type my-3">
           <%= form.radio_button :sub_property_type, 'flat', type: "radio", class: "form-check btn-check", autocomplete: "off", required: true %>
-          <%= form.label "flat/Appartment", class: "btn btn-outline-dark btn-sm px-3 mx-1 rounded-5", for: "sub_property_type_flat", value: "Residential"  %>
+          <%= form.label :sub_property_type, class: "btn btn-outline-dark btn-sm px-3 mx-1 rounded-5", for: "property_sub_property_type_flat", value: "flat/Appartment"  %>
 
           <%= form.radio_button :sub_property_type, 'plot', type: "radio", class: "form-check btn-check", autocomplete: "off", required: true %>
-          <%= form.label "plot/land", class: "btn btn-outline-dark btn-sm px-3 mx-1 rounded-5", for: "sub_property_type_plot", value: "Commercial"  %>
+          <%= form.label :sub_property_type, class: "btn btn-outline-dark btn-sm px-3 mx-1 rounded-5", for: "property_sub_property_type_plot", value: "plot/land"  %>
 
           <%= form.radio_button :sub_property_type, 'house', type: "radio", class: "form-check btn-check", autocomplete: "off", required: true %>
-          <%= form.label "house/villa", class: "btn btn-outline-dark btn-sm px-3 mx-1 rounded-5", for: "sub_property_type_house", value: "Commercial"  %>
+          <%= form.label :sub_property_type, class: "btn btn-outline-dark btn-sm px-3 mx-1 rounded-5", for: "property_sub_property_type_house", value: "house/villa"  %>
         </div>
       </div>
 
       <div class="col-md-6">
-        <%= form.label :registration_no, class: 'form-label' %>
-        <%= form.text_field :registration_no, autocomplete: "registration_no", class: "form-control" %>
+        <%= form.label :property_name, class: 'form-label' %>
+        <%= form.text_field :property_name, autocomplete: "property_name", class: "form-control" %>
       </div>
       <div class="col-md-4">
-        <%= form.label "size", class: 'form-label' %>
-        <%= form.number_field :size, autocomplete: "registration_no", class: "form-control", min: 1 %>
+        <%= form.label :property_size, class: 'form-label' %>
+        <%= form.number_field :property_size, autocomplete: "size", class: "form-control", min: 1 %>
       </div>
-
-
-     <!--   <div class="input-group mb-3">
-        <%= form.select :size, %w[ sq.ft, acres ], {}, class: "form-select" %>
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-          <li><a class="dropdown-item" href="#">Separated link</a></li>
-        </ul>
-        <input type="text" class="form-control" aria-label="Text input with dropdown button">
-        <%= form.number_field :size, autocomplete: "registration_no", class: "form-control", min: 1, aria_label: "Text input with dropdown button" %>
-      </div>-->
 
       <div class="col-md-12">
         <%= form.label :address, class: 'form-label' %>
@@ -75,7 +61,7 @@
 
       <div class="col-md-4">
         <%= form.label :state, class: "form-label"%>
-        <%= form.select :state, %w[ Delhi Mumbai Banglore Indore],{}, class: "form-select" %>
+        <%= form.select :state, %w[ Delhi Maharashtra Madhya-Pradesh Rajasthan ], {}, class: "form-select" %>
       </div>
 
       <div class="col-md-2">
@@ -86,7 +72,7 @@
 
       <div class="col-md-6">
         <%= form.label :images, class: "form-label" %>
-        <%= form.file_field :imgaes, multiple: "multiple", autocomplete: "new-password", class: "form-control" %>
+        <%= form.file_field :images, multiple: "multiple", autocomplete: "new-password", class: "form-control" %>
       </div>
 
 

@@ -1,0 +1,40 @@
+.all-title-box{
+	background: url("https://images.pexels.com/photos/19542237/pexels-photo-19542237/free-photo-of-bungalows-in-row.jpeg?auto=compress&cs=tinysrgb&w=6007");
+  background-position: center;
+  background-size: cover;
+	position: relative;
+	padding: 200px 0 70px 0px;
+	margin-bottom: 0px;
+}
+
+.all-title-box::before{
+	content: "";
+	position: absolute;
+	background: rgba(0,0,0,0.5);
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+}
+
+.all-title-box .container{
+	position: relative;
+}
+
+.all-title-box h2{
+	color: #ffffff;
+	padding: 0px;
+	font-size: 40px;
+	font-weight: 600;
+}
+
+
+.property-card{
+  border:1px solid rgba(156, 138, 138, 0.473);
+  transition: .3s linear;
+}
+.property-card:hover{
+  /* box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); */
+  box-shadow:  0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  cursor: pointer;
+}
