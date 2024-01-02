@@ -74,3 +74,5 @@ gem "sassc-rails"
 gem 'devise'
 
 gem 'rolify'
+
+gem 'letter_opener'

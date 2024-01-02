@@ -1,0 +1,24 @@
+<div class="container " id="listing-container">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Images</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% properties.each do |property|%>
+          <tr>
+            <td><%= property.property_name%></td>
+            <td><%= property.status %></td>
+            <td><!--<button class="btn btn-outline-dark properties-bookings" id="property_<%= property.id%>" data-property-id="<%= property.id%>">see bookings</button> -->
+              <%= link_to "See Bookings", "#{property_path(property.id)}/bookings" %>
+            </td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>

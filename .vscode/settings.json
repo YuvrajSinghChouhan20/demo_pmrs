@@ -1,5 +1,6 @@
 {
   "emmet.includeLanguages": {
     "erb": "html"
-  }
+  },
+  "liveServer.settings.port": 5501
 }

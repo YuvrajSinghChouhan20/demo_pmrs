@@ -6,5 +6,28 @@ import "controllers"
 import "popper"
 import "bootstrap"
 
+const dashboardBtn = document.querySelectorAll('.dashboard-btn');
+const listings = document.getElementById('listings');
+const dashboard = document.getElementById('dashboard');
 
-let property_type = document.getElementById("property")
+console.log(dashboardBtn)
+
+const applyListings = (btn)=>{
+  if(btn.clicked)
+    btn.style.background = "#f8f9fa"
+
+  if (btn.dataset.bsProperties){
+    listings.style.display = "block"
+    dashboard.style.display = "none"
+  }
+  else{
+    listings.style.display = "none"
+    dashboard.style.display = "block"
+  }
+}
+
+dashboardBtn.forEach(btn => {
+  console.log(btn)
+  btn.addEventListener('click', (event)=>{applyListings(btn)})
+});
+
