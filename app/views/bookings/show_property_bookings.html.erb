@@ -1,0 +1,33 @@
+<% if flash[:alert] || flash[:notice]%>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong><%= flash[:alert] ? flash[:alert] : flash[:notice] %></strong> You should check in on some of those fields below.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end%>
+
+<div class="container my-5" id="listing-container">
+  <h2 class="border-bottom border-1 p-3 my-4  fs-3">Booking Requests</h2>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Booking</th>
+          <th>Booking Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @bookings.each do |booking|%>
+          <tr>
+            <td><%= booking.user.first_name%></td>
+            <td><%= booking.booking_status %></td>
+            <td>
+                <%= button_to "Approve", "#{property_bookings_path}/#{booking.id}/approve",method: :post, class: "btn btn-outline-dark properties-bookings d-inline #{booking.booking_status == "approved" ? "disabled" : ""}" %>
+                <%= button_to "Cancel", "#{property_bookings_path}/#{booking.id}/approve",method: :post, class: "btn btn-outline-dark properties-bookings d-inline #{booking.booking_status == "approved" ? "disabled" : ""}" %>
+            </td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>

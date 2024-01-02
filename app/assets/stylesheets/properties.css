@@ -28,13 +28,100 @@
 	font-weight: 600;
 }
 
+/* ================ Property Card ============================ */
 
-.property-card{
-  border:1px solid rgba(156, 138, 138, 0.473);
-  transition: .3s linear;
+.property-card {
+  background: #fff;
+  text-align: left;
+  width: 100%;
+  float: left;
+  transition: 0.3s linear;
+  height: 650px;
 }
 .property-card:hover{
-  /* box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); */
-  box-shadow:  0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-  cursor: pointer;
+  -webkit-box-shadow: 4px 11px 35px -14px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 4px 11px 35px -14px rgba(0, 0, 0, 0.5);
+  -ms-box-shadow: 4px 11px 35px -14px rgba(0, 0, 0, 0.5);
+  -o-box-shadow: 4px 11px 35px -14px rgba(0, 0, 0, 0.5);
+  box-shadow: 4px 11px 35px -14px rgba(0, 0, 0, 0.5) !important;
+}
+.property-card figure {
+  margin-bottom: 0;
+  position: relative;
+  height: 40%;
+}
+.property-card figure img {
+  margin-bottom: 0;
+  height: 100%;
+  object-fit: cover;
+}
+.property-card figure .tag {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 2px 10px;
+  background: #2c2c2c;
+  color: #fff;
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  display: inline;
+  text-decoration: none;
+}
+.property-card .fh5co-property-specification {
+  border-top: 1px solid #f0f0f0;
+  background: #f7f7f7;
+  padding: 15px 30px 15px 30px;
+  font-size: 13px;
+  margin-bottom: 0;
+}
+.property-card .fh5co-property-specification > span {
+  margin-right: 10px;
+}
+.property-card .fh5co-property-specification > span strong {
+  color: #383838;
+}
+.property-card .fh5co-property-innter {
+  padding: 30px 30px 30px 30px;
+}
+.property-card .fh5co-property-innter p {
+  color: #96a0ae;
+}
+.property-card .fh5co-property-innter p:last-child {
+  margin-bottom: 0;
+}
+.property-card .fh5co-property-innter h3 {
+  margin-bottom: 20px;
+}
+.property-card .fh5co-property-innter h3 a:hover, .property-card .fh5co-property-innter h3 a:active, .property-card .fh5co-property-innter h3 a:focus {
+  text-decoration: none;
+}
+.property-card .price-status {
+  margin-bottom: 20px;
+}
+.property-card .price-status .price {
+  font-size: 28px;
+  color: #134f5e;
+  margin-bottom: 10px;
+  position: relative;
+}
+.property-card .price-status .price .per {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+
+/* =========================== Porperty show style =====================================*/
+
+.property-info{
+
+}
+
+.property-info h1{
+  font-size: 50px;
+  font-weight: 800 !important;
+}
+
+.property-info small{
+  color: darkgrey;
 }

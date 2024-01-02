@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Booking Approved</h1>
+    <p>
+      You Booking for <%= @property.property_name %> is <strong>Approved</strong>,
+    </p>
+    <p>
+      To accept the agreement to proceed further process, <%= link_to "click here", "#"%>.
+    </p>
+    <figure>
+      Click <a href="<%= @property.images.first %>" download>here</a> to download <% @property.listed_for.capitalize %> Agreement
+    </figure>
+    <p>Thanks for choosing <strong>Tenento</strong></p>
+  </body>
+</html>

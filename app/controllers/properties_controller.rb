@@ -29,10 +29,9 @@ class PropertiesController < ApplicationController
   private
 
   def properties_params
+    params[:property].merge!(status: "available")
     params.require(:property).permit(:property_type, :sub_property_type, :property_name, :listed_for, :address, :city, :state, :zipcode, :property_size, images: [])
   end
 
-  def check_user_signed_in?
-    redirect_to new_user_session_path unless user_signed_in?
-  end
+
 end

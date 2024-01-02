@@ -14,6 +14,8 @@
 
 
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
@@ -53,8 +55,11 @@
                         <%= "#{current_user.email.truncate(15)}"%>
                       </button>
                       <ul class="dropdown-menu dropdown-menu-white">
-                        <li><a class="dropdown-item" href="#">Dashboard</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><%= link_to "Profile", "#", class:"dropdown-item" %></li>
+                        <li><%= link_to "Dashboard", user_dashboard_path, class:"dropdown-item" %></li>
+                        <% if current_user.has_role? :landlord%>
+                          <li><%= link_to "My-Listings", "#", class:"dropdown-item" %></li>
+                        <%end%>
                         <li><%= link_to "Sign_out", destroy_user_session_path, data: {
                           turbo_method: :delete
                         }, class: "dropdown-item" %></li>
