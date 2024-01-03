@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-  before_action :check_user_signed_in?, only: [:create, :new]
+  before_action :authenticate_user!, only: [:create, :new]
   def index
     @properties = Property.all #where(verified: true)
   end

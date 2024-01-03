@@ -3,8 +3,8 @@
 <%end%>
 
 <div class="container-fluid ">
-  <div class="row dashboard-container p-2 bg-dark ">
-    <div class="col-md-2 right-pane border-opacity-10 d-flex p-0  text-light">
+  <div class="row dashboard-container p-3 m-0 rounded-4">
+    <div class="col-md-2 right-pane border-opacity-10 d-flex p-0">
       <ul class="dashboard-side-menu p-0 mt-5">
         <li>
           <button class="btn dashboard-btn " data-bs-dashboard="dashboard" id="" >Dashboard</button>
@@ -20,7 +20,7 @@
         </li>
       </ul>
     </div>
-    <div class="col-md-10 left-pane bg-light h-100 rounded-5 p-2">
+    <div class="col-md-10 left-pane bg-light h-100 rounded-5 p-4">
 
       <div id="listings">
         <% if current_user.properties && current_user.has_role?(:landlord) %>

@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: "tenento@tenento.com"
+  default from: "yuvrajsinghchouhan668@gmail.com"
 
   def booking_confirmation
     puts "================================"
