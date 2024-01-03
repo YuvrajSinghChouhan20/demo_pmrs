@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :check_user_signed_in?, only: [:create, :show_property_bookings, :update]
+  before_action :authenticate_user!, only: [:create, :show_property_bookings, :update]
 
   def create
     user = current_user
@@ -10,6 +10,7 @@ class BookingsController < ApplicationController
       redirect_to properties_path, notice: "property Already booked"
       return
     end
+
     @property = Property.find(params[:property_id]);
     property_booking = {
       booking_date: Date.today,

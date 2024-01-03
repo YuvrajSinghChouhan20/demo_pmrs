@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @booking = Booking.find(params[:booking_id])
     if @booking.update(booking_status: "approved");
 
-      UserMailer.with(user: @booking.user, property: @booking.property).booking_confirmation.deliver_now
+      UserMailer.with(user: @booking.user, property: @booking.property).booking_confirmation.deliver_later
 
       redirect_to "#", notice: "Booking Approved "
     else

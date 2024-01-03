@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  duration: MyString
+  start_date: 2024-01-02
+  end_date: 2024-01-02
+  amount: 1
+  agreement_status: MyString
+  user: one
+  property: one
+
+two:
+  duration: MyString
+  start_date: 2024-01-02
+  end_date: 2024-01-02
+  amount: 1
+  agreement_status: MyString
+  user: two
+  property: two
