@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_02_130608) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_08_105138) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,13 +47,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_02_130608) do
     t.date "start_date"
     t.date "end_date"
     t.integer "amount"
-    t.string "agreement_status"
     t.bigint "user_id", null: false
     t.bigint "property_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "security_deposit"
+    t.text "terms_and_conditions", array: true
+    t.bigint "maintance_amount"
+    t.integer "agreement_status"
     t.index ["property_id"], name: "index_agreements_on_property_id"
     t.index ["user_id"], name: "index_agreements_on_user_id"
+  end
+
+  create_table "agreements_documents", id: false, force: :cascade do |t|
+    t.bigint "agreement_id", null: false
+    t.bigint "document_id", null: false
+    t.index ["agreement_id", "document_id"], name: "index_agreements_documents_on_agreement_id_and_document_id"
+    t.index ["document_id", "agreement_id"], name: "index_agreements_documents_on_document_id_and_agreement_id"
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -66,6 +76,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_02_130608) do
     t.datetime "updated_at", null: false
     t.index ["property_id"], name: "index_bookings_on_property_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.string "document_name"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -86,6 +104,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_02_130608) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_properties_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "ratings"
+    t.string "title"
+    t.text "description"
+    t.boolean "residented"
+    t.bigint "user_id", null: false
+    t.bigint "property_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_reviews_on_property_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -131,5 +162,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_02_130608) do
   add_foreign_key "agreements", "users"
   add_foreign_key "bookings", "properties"
   add_foreign_key "bookings", "users"
+  add_foreign_key "documents", "users"
   add_foreign_key "properties", "users"
+  add_foreign_key "reviews", "properties"
+  add_foreign_key "reviews", "users"
 end

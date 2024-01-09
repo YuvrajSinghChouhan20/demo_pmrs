@@ -89,11 +89,11 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: '587',
-    user_name: 'yuvrajsinghchouhan668@gmail.com',
-    password: 'irfghtbkjsphbuzg',
+    user_name: ENV['MAIL_USERNAME'],
+    password: ENV['MAIL_PASSWORD'],
     authentication: 'plain',
     enable_starttls: true,
-    open_timeout: 5,
-    read_timeout: 5
+    open_timeout: 30,
+    read_timeout: 30
   }
 end

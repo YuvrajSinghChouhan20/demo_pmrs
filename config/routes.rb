@@ -7,11 +7,19 @@ Rails.application.routes.draw do
     registrations: "users/registrations"
   }
 
+
   resources :properties do
     resources :bookings, only: [:create] do
+      resources :agreements, shallow: true, only: [:new, :create, :edit, :update, :destory] do
+        resources :agreement_steps
+      end
+
+      patch "/cancel", to: "bookings#cancel_booking"
       post "/approve", to: "users#approve_booking_request"
     end
+    resources :reviews, only: [:index, :show, :create, :new]
     get "/bookings", to: "bookings#show_property_bookings"
+
   end
 
 

@@ -1,0 +1,76 @@
+<%= content_for :stylesheet do%>
+  <%= stylesheet_link_tag ""%>
+<%end%>
+<div class="container mt-5 p-0">
+  <div class="row" >
+      <h1 class="mb-2">Agreement For : <%= @agreement.user.first_name.capitalize %> <%= @agreement.user.last_name.capitalize %></h1>
+    <div class="col-md-12  border bg-light mb-4 py-3" style="height: 250px; overflow-y: scroll;">
+      <h1>Terms And Conditions</h1>
+      <ul class="px-0">
+        <% @agreement.terms_and_conditions.each do |term_and_condition| %>
+          <li class="my-2"><%= term_and_condition %></li>
+        <%end %>
+      </ul>
+    </div>
+    <div class="col-md-6 mx-auto">
+      <%= form_with model: @agreement, url: agreement_path(@agreement), class: 'row g-3' do |form|%>
+        <div class="col-md-12">
+          <%= form.label :Name, class: "form-label", value: "Name"%>
+          <%= form.text_field :name, value: @agreement.user.first_name + @agreement.user.last_name ,class: "form-control", disabled: true  %>
+        </div>
+        <div class="col-md-6">
+          <%= form.label :mobile, class: "form-label", value: "Mobile No"%>
+          <%= form.text_field :mobile, value: @agreement.user.mobile ,class: "form-control", disabled: true  %>
+        </div>
+        <div class="col-md-6">
+          <%= form.label :duration, class: "form-label", value: "Agreement Duration"%>
+          <%= form.select :duration, [ "Select month" ]+(1..12).to_a, { selected: @agreement.duration.to_i, disabled: "select-month"}, class: "form-select  disabled", disabled: true  %>
+        </div>
+        <div class="col-md-6">
+          <%= form.label :amount, class: "form-label", value: "Rent Amount"%>
+          <span><small>(per/month)</small></span>
+          <%= form.number_field  :amount, class: "form-control disabled ", disabled: true  %>
+        </div>
+        <div class="col-md-6">
+          <%= form.label :maintance_amount, class: "form-label", value: "Maintainance Amount"%>
+          <span><small>(per/month)</small></span>
+          <%= form.number_field  :maintance_amount, class: "form-control disabled ", disabled: true  %>
+        </div>
+        <div class="col-md-12">
+          <%= form.label :security_deposit, class: "form-label", value: "Security Deposit"%>
+          <%= form.number_field  :security_deposit, class: "form-control  disabled", disabled: true  %>
+        </div>
+        <div class="col-md-6">
+          <%=form.label :start_date, class: "form-label"%>
+          <%= form.date_field :start_date, class: "form-control disabled", disabled: true  %>
+        </div>
+        <div class="col-md-6">
+          <%=form.label :end_date, class: "form-label"%>
+          <%= form.date_field :end_date, class: "form-control disabled", disabled: true  %>
+        </div>
+
+        <div class="col-md-12">
+          <%=form.label :document, class: "form-label", value: "Addhar Card", name: 'agreement[documents][pan_card]' %>
+          <%= form.file_field :document, class: "form-control disabled", name: 'agreement[documents][pan_card]' %>
+        </div>
+        <div class="col-md-12">
+          <%=form.label :document, class: "form-label", value: "Pan Card", name: 'agreement[documents][aadhar_card]' %>
+          <%= form.file_field :document, class: "form-control disabled", name: 'agreement[documents][aadhar_card]' %>
+        </div>
+        <div class="col-md-12">
+          <%=form.label :document, class: "form-label", value: "Signature", name: 'agreement[documents][aadhar_card]' %>
+          <%= form.file_field :document, class: "form-control", name: 'agreement[documents][aadhar_card]' %>
+        </div>
+        <div class="col-md-12">
+          <%= form.check_box :agreement_status, class: "form-check-input mx-2", value: "accepted"  %>
+          <%=form.label :agreement_status, class: "form-check-label", value: "Accept Terms & Conditions" %>
+        </div>
+        <div class="col-md-12">
+          <%= form.submit "Accept Agreement", class: "btn btn-dark btn-lg"%>
+          <%= link_to "Cancel Agreement", "#", class: "btn btn-secondary btn-lg"%>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>
+

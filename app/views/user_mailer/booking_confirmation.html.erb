@@ -6,13 +6,12 @@
   <body>
     <h1>Booking Approved</h1>
     <p>
-      You Booking for <%= @property.property_name %> is <strong>Approved</strong>,
+      You Booking for <%= @property.property_name %> is <strong>Approved</strong>
     </p>
     <p>
-      To accept the agreement to proceed further process, <%= link_to "click here", root_url %>.
+      <p> Booking Id    : <strong><%= @booking.id %></strong></p>
+      <p> Status  : <strong><%= @booking.status %></strong></p>
     </p>
-    <figure>
-    </figure>
     <p>Thanks for choosing <strong>Tenento</strong></p>
   </body>
 </html>

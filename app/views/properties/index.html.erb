@@ -6,8 +6,8 @@
   <div class="all-title-box">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
-					<h2>Properties</h2>
+				<div class="col-md-12 text-white">
+					<h2 class="text-white">Properties</h2>
 				</div>
 			</div>
 		</div>
@@ -26,15 +26,19 @@
   </div>
 
   <!-- Property List Start -->
-  <div class="container-xxl py-5">
+    <div class="container-xxl py-5">
       <div class="container">
           <div class="tab-content">
               <div id="tab-1" class="tab-pane fade show p-0 active">
                   <div class="row g-4">
-                    <%= render partial: "property_card", property: @properties %>
+                    <% if @properties.any? %>
+                      <%= render partial: "property_card", property: @properties %>
+                    <% else %>
+                      <h2 class="text-center">No Property Listed</h2>
+                    <%end%>
                   </div>
               </div>
           </div>
       </div>
-  </div><!-- Property List End -->
+    </div><!-- Property List End -->
 </div>

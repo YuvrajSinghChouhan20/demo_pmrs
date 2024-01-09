@@ -8,13 +8,13 @@
       <div class="fh5co-property-innter">
         <h3><%= property.property_name.capitalize %>, <%= property.city %></h3>
         <div class="price-status">
-                <span class="price">$540,000 </span>
+                <span class="price"><%= property.price%> Rs </span>
               </div>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dicta magni amet atque doloremque velit unde adipisci omnis hic quaerat.</p>
               <%= link_to "See More", property_path(property), class: "btn btn-dark btn-lg" %>
           </div>
           <p class="fh5co-property-specification">
-            <span><strong>3500</strong> Sq Ft</span>
+            <span><strong><%= property.property_size%></strong> Sq Ft</span>
             <span><strong>3</strong> Beds</span>
             <span><strong>3.5</strong> Baths</span>
             <span><strong>2</strong> Garages</span>

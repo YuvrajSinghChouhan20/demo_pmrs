@@ -13,8 +13,10 @@
           <tr>
             <td><%= property.property_name%></td>
             <td><%= property.status %></td>
-            <td><!--<button class="btn btn-outline-dark properties-bookings" id="property_<%= property.id%>" data-property-id="<%= property.id%>">see bookings</button> -->
+            <td>
               <%= link_to "See Bookings", "#{property_path(property.id)}/bookings" %>
+              <%= link_to "Edit", edit_property_path(property) %>
+              <%= button_to "Destroy", property_path(property), method: :delete %>
             </td>
           </tr>
         <%end%>

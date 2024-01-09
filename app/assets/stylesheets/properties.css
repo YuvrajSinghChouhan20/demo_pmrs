@@ -117,11 +117,15 @@
 
 }
 
-.property-info h1{
+.property-info h3{
   font-size: 50px;
-  font-weight: 800 !important;
+  font-weight: 700 !important;
 }
 
 .property-info small{
   color: darkgrey;
+}
+
+.progress{
+  height: 10px !important;
 }

@@ -1,9 +1,16 @@
-<% if flash[:alert] || flash[:notice]%>
+<% if flash[:booking_alert] || flash[:booking_notice]%>
   <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <strong><%= flash[:alert] ? flash[:alert] : flash[:notice] %></strong> You should check in on some of those fields below.
+    <strong><%= flash[:alert] ? flash[:booking_alert] : flash[:booking_notice] %></strong> You should check in on some of those fields below.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 <% end%>
+
+<% if flash[:mail_error_notice]%>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong><%= flash[:mail_error_notice] %></strong> You should check in on some of those fields below.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<%end%>
 
 <div class="container my-5" id="listing-container">
   <h2 class="border-bottom border-1 p-3 my-4  fs-3">Booking Requests</h2>
@@ -19,11 +26,25 @@
       <tbody>
         <% @bookings.each do |booking|%>
           <tr>
-            <td><%= booking.user.first_name%></td>
-            <td><%= booking.booking_status %></td>
-            <td>
-                <%= button_to "Approve", "#{property_bookings_path}/#{booking.id}/approve",method: :post, class: "btn btn-outline-dark properties-bookings d-inline #{booking.booking_status == "approved" ? "disabled" : ""}" %>
-                <%= button_to "Cancel", "#{property_bookings_path}/#{booking.id}/approve",method: :post, class: "btn btn-outline-dark properties-bookings d-inline #{booking.booking_status == "approved" ? "disabled" : ""}" %>
+            <td><%= booking.user.full_name%></td>
+            <td><%= booking.booking_status.capitalize %></td>
+            <td class="d-flex">
+                <!--<%= button_to "Approve", "#{property_bookings_path}/#{booking.id}/approve", method: :post, class: "btn btn-outline-dark properties-bookings d-inline mx-1  #{booking.booking_status == "approved" ? "disabled" : ""}" %>
+
+                <%= button_to "Cancel", property_booking_cancel_path(booking.property, booking), method: :patch, class: "btn btn-outline-dark properties-bookings d-inline  mx-1 #{booking.booking_status == "canceled" || booking.booking_status == "approved" ? "disabled" : ""}" %>
+
+                <% unless (booking.booking_status == "approved" && booking.property.has_active_agreement?) || booking.booking_status == "pending" %>
+                  <%= link_to "Create Agreement", new_property_booking_agreement_path(booking.property, booking), class: "btn btn-outline-dark properties-bookings d-inline  mx-1 " %>
+                <% else %>
+                  <%= link_to "Mail Agreement", "#", class: "btn btn-outline-dark"%>
+                <%end%> -->
+
+                <%if booking.booking_status == "approved"%>
+                  <%= link_to "Create Agreement", new_property_booking_agreement_path(booking.property, booking), class: "btn btn-outline-dark properties-bookings d-inline  mx-1 " %>
+                <%else%>
+                  <%= button_to "Approve", "#{property_bookings_path}/#{booking.id}/approve", method: :post, class: "btn btn-outline-dark properties-bookings d-inline mx-1  #{booking.booking_status == "approved" ? "disabled" : ""}" %>
+                  <%= button_to "Cancel", property_booking_cancel_path(booking.property, booking), method: :patch, class: "btn btn-outline-dark properties-bookings d-inline  mx-1 #{booking.booking_status == "canceled" || booking.booking_status == "approved" ? "disabled" : ""}" %>
+                <%end%>
             </td>
           </tr>
         <%end%>

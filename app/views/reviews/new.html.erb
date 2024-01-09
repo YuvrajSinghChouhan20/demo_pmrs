@@ -1,0 +1,48 @@
+<div class="container py-2">
+  <div class="row my-5">
+    <div class="col-md-6 mx-auto">
+      <h1 class="mb-3">Review</h1>
+      <%= render "shared/errors", resource: @review%>
+      <%= form_with model: [ @property, @property.reviews.build ], class: "form" do |form|%>
+        <div class="my-3">
+          <%= form.label :title, class: "form-label"%>
+          <%= form.text_field :title, class: "form-control"%>
+        </div>
+        <div class="my-3">
+          <%= form.label :description, class: "form-label"%>
+          <%= form.text_area :description, class: "form-control" %>
+        </div>
+        <div class="my-3">
+          <p class="my-2">Ratings</p>
+          <div class="form-check form-check-inline">
+            <%= form.radio_button :ratings, 1, class: "form-check-input"%>
+            <%= form.label :very_bad, class: "form-check-label", value: "Very Bad"%>
+          </div>
+          <div class="form-check form-check-inline">
+            <%= form.radio_button :ratings, 2 , class: "form-check-input" %>
+            <%= form.label :bad, value: "Bad", class: "form-check-label"%>
+          </div>
+          <div class="form-check form-check-inline">
+            <%= form.radio_button :ratings, 3 , class: "form-check-input" %>
+            <%= form.label :average, value: "Average", class: "form-check-label"%>
+          </div>
+          <div class="form-check form-check-inline">
+            <%= form.radio_button :ratings, 4 , class: "form-check-input" %>
+            <%= form.label :good, value: "Good", class: "form-check-label"%>
+          </div>
+          <div class="form-check form-check-inline">
+            <%= form.radio_button :ratings, 5 , class: "form-check-input" %>
+            <%= form.label :excellent, class: "form-check-label", value: "Excellent"%>
+          </div>
+        </div>
+        <div class="">
+          <%= form.label :images, class: "form-label" %>
+          <%= form.file_field :images, multiple: "multiple", class: "form-control" %>
+        </div>
+        <div class="my-4">
+          <%= form.submit "Submit" , class: "btn btn-lg btn-dark" %>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>
