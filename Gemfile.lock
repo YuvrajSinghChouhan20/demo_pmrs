@@ -111,6 +111,10 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
@@ -162,8 +166,16 @@ GEM
     nokogiri (1.15.5-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pdf-core (0.9.0)
     pg (1.5.4)
     popper_js (2.11.8)
+    prawn (2.4.0)
+      pdf-core (~> 0.9.0)
+      ttfunk (~> 1.7)
+    prawn-icon (3.1.0)
+      prawn (>= 1.1.0, < 3.0.0)
+    prawn-table (0.2.2)
+      prawn (>= 1.3.0, < 3.0.0)
     psych (5.1.2)
       stringio
     public_suffix (5.0.4)
@@ -249,6 +261,7 @@ GEM
     thor (1.3.0)
     tilt (2.3.0)
     timeout (0.4.1)
+    ttfunk (1.7.0)
     turbo-rails (1.5.0)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
@@ -267,6 +280,8 @@ GEM
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    wicked (2.0.0)
+      railties (>= 3.0.7)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.6.12)
@@ -281,10 +296,14 @@ DEPENDENCIES
   capybara
   debug
   devise
+  dotenv-rails
   importmap-rails
   jbuilder
   letter_opener
   pg (~> 1.1)
+  prawn
+  prawn-icon
+  prawn-table
   puma (>= 5.0)
   rails (~> 7.1.2)
   redis (>= 4.0.1)
@@ -296,6 +315,7 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   web-console
+  wicked
 
 RUBY VERSION
    ruby 3.2.2p53

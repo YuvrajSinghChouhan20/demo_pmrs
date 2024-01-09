@@ -1,5 +1,15 @@
+$primary: #0074d9;
+$dark: #333333;
+
 :root{
-  --main-color:black;
+  --main-color:#333333;
+}
+
+.bg-dark, btn-dark{
+  background-color: var(--main-color) !important;
+}
+.text-dark{
+  color: var(--main-color);
 }
 
 h1{

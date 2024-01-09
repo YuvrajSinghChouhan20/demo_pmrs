@@ -6,28 +6,45 @@ import "controllers"
 import "popper"
 import "bootstrap"
 
+
+
 const dashboardBtn = document.querySelectorAll('.dashboard-btn');
 const listings = document.getElementById('listings');
+const bookingsList = document.getElementById('bookings');
 const dashboard = document.getElementById('dashboard');
+const notifications = document.getElementById('');
+const rentedProperty = document.getElementById('rented-property');
 
-console.log(dashboardBtn)
-
+const switchDisplay =(dLiting, dBookings, dRented, dNotifications, dDashboard ='block' )=>{
+  listings.style.display = dLiting;
+  dashboard.style.display= dDashboard;
+  bookingsList.style.display= dBookings;
+  rentedProperty.style.display= dRented
+}
 const applyListings = (btn)=>{
   if(btn.clicked)
-    btn.style.background = "#f8f9fa"
+    btn.style.background = "#f8f9fa";
 
-  if (btn.dataset.bsProperties){
-    listings.style.display = "block"
-    dashboard.style.display = "none"
+  switch (btn.dataset.bsDashboardBtn) {
+    case "properties":
+      switchDisplay('block', 'none', 'none', 'none', "none");
+      break;
+    case "bookings":
+      switchDisplay('none', 'block' ,'none', 'none', 'none');
+      break;
+    case "dashboard":
+      switchDisplay('none', 'none' ,'none', 'none');
+      break;
+    case "rented-property":
+      switchDisplay('none', 'none' ,'block', 'none', 'none');
+      break;
+    default:
+      dashboard.style.display="block";
+      break;
   }
-  else{
-    listings.style.display = "none"
-    dashboard.style.display = "block"
-  }
-}
+};
 
 dashboardBtn.forEach(btn => {
-  console.log(btn)
-  btn.addEventListener('click', (event)=>{applyListings(btn)})
+  btn.addEventListener('click', (event)=>{applyListings(btn)});
 });
 

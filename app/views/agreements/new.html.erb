@@ -1,0 +1,43 @@
+<div class="container mt-5 p-0">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <h1 class="my-5">Agreement For : <%= @booking.user.first_name.capitalize%><%= @booking.user.last_name.capitalize%></h1>
+      <%= form_with model: [@booking, @booking.property.agreements.build], url: property_booking_agreements_path, class: 'row g-3' do |form|%>
+        <div class="col-md-12">
+          <%= form.label :duration, class: "form-label", value: "Agreement Duration"%>
+          <%= form.select :duration, [ "Select month" ]+(1..12).to_a, { selected: "select-month", disabled: "select-month"}, class: "form-select " %>
+        </div>
+        <div class="col-md-6">
+          <%= form.label :amount, class: "form-label", value: "Rent Amount"%>
+          <span><small>(per/month) </small></span>
+          <%= form.number_field  :amount, class: "form-control " %>
+        </div>
+        <div class="col-md-6">
+          <%= form.label :mantainance_amount, class: "form-label", value: "Maintanance Amount"%>
+          <span><small>(per/month)</small></span>
+          <%= form.number_field  :maintance_amount, class: "form-control " %>
+        </div>
+        <div class="col-md-12">
+          <%= form.label :security_deposit, class: "form-label", value: "Security Deposit"%>
+          <%= form.number_field  :security_deposit, class: "form-control " %>
+        </div>
+        <div class="col-md-6">
+          <%=form.label :start_date, class: "form-label"%>
+          <%= form.date_field :start_date, class: "form-control" %>
+        </div>
+        <div class="col-md-6">
+          <%=form.label :end_date, class: "form-label"%>
+          <%= form.date_field :end_date, class: "form-control" %>
+        </div>
+        <div class="col-md-12">
+          <%=form.label :terms_and_conditions, class: "form-label", value: "Terms And Conditions"%>
+        <%= form.text_area :terms_and_conditions, class: "form-control", rows: 5 %>
+        </div>
+        <div class="col-md-3">
+          <%= form.submit "Create Agreement", class: "btn btn-dark btn-lg"%>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>
+

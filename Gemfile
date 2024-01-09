@@ -71,8 +71,21 @@ gem "bootstrap"
 
 gem "sassc-rails"
 
+
+# ====================== Gem used==================
 gem 'devise'
 
 gem 'rolify'
 
 gem 'letter_opener'
+
+gem 'prawn' #=========== for grnerating pdf =======
+
+gem 'prawn-table' # ================== for generating tables =============="
+
+gem 'prawn-icon' # ================= for adding  icons to pdf
+
+gem 'wicked'
+
+
+gem 'dotenv-rails', groups: [:development, :test]

@@ -33,4 +33,10 @@
   background-color:  #f8f9fa;
 }
 
+#rented-property{
+  display: none;
+}
+#bookings{
+  display: none;
+}
 /* ======================================================== */

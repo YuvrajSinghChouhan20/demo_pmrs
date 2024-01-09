@@ -7,16 +7,19 @@
     <div class="col-md-2 right-pane border-opacity-10 d-flex p-0">
       <ul class="dashboard-side-menu p-0 mt-5">
         <li>
-          <button class="btn dashboard-btn " data-bs-dashboard="dashboard" id="" >Dashboard</button>
+          <button class="btn dashboard-btn " data-bs-dashboard-btn="dashboard" id="" >Dashboard</button>
         </li>
         <li>
-          <button class="btn dashboard-btn " data-bs-properties="properties" id="" >My properties</button>
+          <button class="btn dashboard-btn " data-bs-dashboard-btn="properties" id="" >My properties</button>
         </li>
         <li>
-          <button class="btn dashboard-btn" data-bs-rented-property="properties">Rented Property</button>
+          <button class="btn dashboard-btn" data-bs-dashboard-btn="rented-property">Rented Property</button>
         </li>
         <li>
-          <button class="btn dashboard-btn" data-bs-Rent="rent" id="" >Rent</button>
+          <button class="btn dashboard-btn" data-bs-dashboard-btn="bookings" id="" >My Bookings</button>
+        </li>
+        <li>
+          <button class="btn dashboard-btn" data-bs-dashboard-btn="notifications" id="" >Notifications</button>
         </li>
       </ul>
     </div>
@@ -24,7 +27,9 @@
 
       <div id="listings">
         <% if current_user.properties && current_user.has_role?(:landlord) %>
-          <%= render "listings", properties: current_user.properties %>
+          <%= render "listings", properties: current_user.properties.with_role(:landlord) %>
+        <% else %>
+          <h1>No Listed Property</h1>
         <%end%>
       </div>
 
@@ -32,8 +37,14 @@
         <%= render partial: "dashboard"%>
       </div>
 
-      <div id="booking-list">
+      <div class="bookings" id="bookings">
+        <%= render 'booking_list', bookings: current_user.bookings %>
       </div>
+
+      <div class="rented-property" id="rented-property">
+        <%= render 'rented_property', rented_properties: current_user.agreements %>
+      </div>
+
     </div>
   </div>
 </div>
