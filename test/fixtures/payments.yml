@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  payemnt_amount: 1
+  payment_date: 2024-01-11
+  payment_status: 1
+  payementable: one
+  payementable_type: Payementable
+
+two:
+  payemnt_amount: 1
+  payment_date: 2024-01-11
+  payment_status: 1
+  payementable: two
+  payementable_type: Payementable

@@ -3,6 +3,9 @@
 <%end%>
 
 <div class="container-fluid ">
+  <% if current_user.pending_agreements?%>
+    alert
+  <%end%>
   <div class="row dashboard-container p-3 m-0 rounded-4">
     <div class="col-md-2 right-pane border-opacity-10 d-flex p-0">
       <ul class="dashboard-side-menu p-0 mt-5">
@@ -20,6 +23,9 @@
         </li>
         <li>
           <button class="btn dashboard-btn" data-bs-dashboard-btn="notifications" id="" >Notifications</button>
+        </li>
+        <li>
+          <button class="btn dashboard-btn" data-bs-dashboard-btn="notifications" id="" >Pending Agreements</button>
         </li>
       </ul>
     </div>

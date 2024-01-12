@@ -13,7 +13,7 @@
       <p> Valid From  : <strong><%= @agreement.start_date %></strong></p>
       <p> valid To    : <strong><%= @agreement.end_date %></strong></p>
       <p> Rent Amount :<strong><%= @agreement.amount %></strong> p/m</p>
-      <p> Security Deposit Amount :<strong><%= @agreement.security_deposit %></strong> p/m</p>
+      <p> Security Deposit Amount :<strong><%= @agreement.security_amount %></strong> p/m</p>
     </p>
     <p>To read and  accept all the tearms and conditions And proceed for the further process, </p>
     <%= link_to "click here", edit_agreement_url(@agreement), class: "btn btn-lg btn-dark d-block", style: "background: #333333; color: white; padding: 8px 20px; font-size: 30px; text-decoration: none; border-radius: 2rem" %>

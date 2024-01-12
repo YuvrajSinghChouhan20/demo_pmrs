@@ -16,6 +16,9 @@ class User < ApplicationRecord
     self.first_name + " " + self.last_name
   end
 
+  def pending_agreements?
+    self.agreements.where(agreement_status: :draft)
+  end
   private
   def is_landlord?
     has_role? (:landlord)

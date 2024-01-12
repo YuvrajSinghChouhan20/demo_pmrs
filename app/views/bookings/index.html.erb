@@ -27,7 +27,7 @@
         <% @bookings.each do |booking|%>
           <tr>
             <td><%= booking.user.full_name%></td>
-            <td><%= booking.booking_status.capitalize %></td>
+            <td><%= booking.booking_status %></td>
             <td class="d-flex">
                 <!--<%= button_to "Approve", "#{property_bookings_path}/#{booking.id}/approve", method: :post, class: "btn btn-outline-dark properties-bookings d-inline mx-1  #{booking.booking_status == "approved" ? "disabled" : ""}" %>
 
@@ -39,11 +39,11 @@
                   <%= link_to "Mail Agreement", "#", class: "btn btn-outline-dark"%>
                 <%end%> -->
 
-                <%if booking.booking_status == "approved"%>
+                <%if booking.confirmed? && booking.property.agreement_already_created?(booking.user)%>
                   <%= link_to "Create Agreement", new_property_booking_agreement_path(booking.property, booking), class: "btn btn-outline-dark properties-bookings d-inline  mx-1 " %>
                 <%else%>
-                  <%= button_to "Approve", "#{property_bookings_path}/#{booking.id}/approve", method: :post, class: "btn btn-outline-dark properties-bookings d-inline mx-1  #{booking.booking_status == "approved" ? "disabled" : ""}" %>
-                  <%= button_to "Cancel", property_booking_cancel_path(booking.property, booking), method: :patch, class: "btn btn-outline-dark properties-bookings d-inline  mx-1 #{booking.booking_status == "canceled" || booking.booking_status == "approved" ? "disabled" : ""}" %>
+                  <%= button_to "Approve", property_booking_approve_path(booking.property, booking), method: :post, class: "btn btn-outline-dark properties-bookings d-inline mx-1  #{booking.confirmed? == "approved" ? "disabled" : ""}" %>
+                  <%= button_to "Cancel", property_booking_cancel_path(booking.property, booking), method: :patch, class: "btn btn-outline-dark properties-bookings d-inline  mx-1 #{booking.canceled? || booking.confirmed? ? "disabled" : ""}" %>
                 <%end%>
             </td>
           </tr>

@@ -5,7 +5,7 @@ class CreateAgreements < ActiveRecord::Migration[7.1]
       t.date :start_date
       t.date :end_date
       t.integer :amount
-      t.string :agreement_status
+      t.integer :agreement_status
       t.references :user, null: false, foreign_key: true
       t.references :property, null: false, foreign_key: true
 

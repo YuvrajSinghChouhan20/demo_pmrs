@@ -89,3 +89,6 @@ gem 'wicked'
 
 
 gem 'dotenv-rails', groups: [:development, :test]
+
+
+gem "byebug"

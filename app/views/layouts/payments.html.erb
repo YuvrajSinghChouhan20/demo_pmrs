@@ -15,22 +15,16 @@
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_importmap_tags %>
+    
 
   </head>
 
   <body  data-no-turbolink="true">
-    <%= render "shared/navbar"%>
-    <%= render "shared/flash_msg"%>
     <!-- content rendering here -->
     <div class="content">
-      <%= content_for?(:content) ? yield(:content) : yield %>
+      <%= yield %>
     </div>
 
-
     <!-- Footer content starts here -->
-    <%= render "shared/footer"%>
-    <script>
-      
-    </script>
   </body>
 </html>

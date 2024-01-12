@@ -23,10 +23,17 @@ class Property < ApplicationRecord
   def recent_reviews
     self.reviews.sample 2
   end
-
   def total_reviews
     self.reviews.count
   end
+  def is_already_booked?(user)
+    self.bookings.where(user_id: user.id, booking_status: :pending).any?
+  end
+
+  def agreement_already_created?(user)
+    self.agreements.where(user_id: user.id, agreement_status: :draft).any?
+  end
+
   private
   def set_property_status
     self.status = "Available"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_08_105138) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_12_100518) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,14 +47,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_08_105138) do
     t.date "start_date"
     t.date "end_date"
     t.integer "amount"
+    t.integer "agreement_status"
     t.bigint "user_id", null: false
     t.bigint "property_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "security_deposit"
+    t.integer "security_amount"
     t.text "terms_and_conditions", array: true
     t.bigint "maintance_amount"
-    t.integer "agreement_status"
+    t.bigint "booking_id", null: false
+    t.index ["booking_id"], name: "index_agreements_on_booking_id"
     t.index ["property_id"], name: "index_agreements_on_property_id"
     t.index ["user_id"], name: "index_agreements_on_user_id"
   end
@@ -67,7 +69,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_08_105138) do
   end
 
   create_table "bookings", force: :cascade do |t|
-    t.string "booking_status"
+    t.integer "booking_status"
     t.string "booking_date"
     t.string "booking_for"
     t.bigint "user_id", null: false
@@ -84,6 +86,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_08_105138) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_documents_on_user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer "payment_amount"
+    t.date "payment_date"
+    t.integer "payment_status"
+    t.string "paymentable_type", null: false
+    t.bigint "paymentable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["paymentable_type", "paymentable_id"], name: "index_payments_on_paymentable"
+    t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -104,6 +119,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_08_105138) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_properties_on_user_id"
+  end
+
+  create_table "rents", force: :cascade do |t|
+    t.integer "rent_amount"
+    t.integer "rent_status"
+    t.date "due_date"
+    t.bigint "agreement_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["agreement_id"], name: "index_rents_on_agreement_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -127,6 +152,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_08_105138) do
     t.datetime "updated_at", null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+  end
+
+  create_table "security_deposits", force: :cascade do |t|
+    t.integer "deposit_amount"
+    t.integer "deposit_status"
+    t.bigint "agreement_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["agreement_id"], name: "index_security_deposits_on_agreement_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -158,12 +192,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_08_105138) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "agreements", "bookings"
   add_foreign_key "agreements", "properties"
   add_foreign_key "agreements", "users"
   add_foreign_key "bookings", "properties"
   add_foreign_key "bookings", "users"
   add_foreign_key "documents", "users"
+  add_foreign_key "payments", "users"
   add_foreign_key "properties", "users"
+  add_foreign_key "rents", "agreements"
   add_foreign_key "reviews", "properties"
   add_foreign_key "reviews", "users"
+  add_foreign_key "security_deposits", "agreements"
 end

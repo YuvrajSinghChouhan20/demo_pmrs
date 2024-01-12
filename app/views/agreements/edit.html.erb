@@ -37,8 +37,8 @@
           <%= form.number_field  :maintance_amount, class: "form-control disabled ", disabled: true  %>
         </div>
         <div class="col-md-12">
-          <%= form.label :security_deposit, class: "form-label", value: "Security Deposit"%>
-          <%= form.number_field  :security_deposit, class: "form-control  disabled", disabled: true  %>
+          <%= form.label :security_amount, class: "form-label", value: "Security Deposit"%>
+          <%= form.number_field  :security_amount, class: "form-control  disabled", disabled: true  %>
         </div>
         <div class="col-md-6">
           <%=form.label :start_date, class: "form-label"%>
@@ -49,28 +49,50 @@
           <%= form.date_field :end_date, class: "form-control disabled", disabled: true  %>
         </div>
 
+        <%= form.fields_for :documents do |document_form|%>
+          <div class="col-md-12">
+            <%= document_form.label :document, "Aadhar Card", class: "form-label", name: 'agreement[documents][pan_card]' %>
+            <%=  document_form.file_field :document, class: "form-control disabled", name: 'agreement[documents][pan_card]' %>
+          </div>
+          <div class="col-md-12">
+            <%= document_form.label :document, "Pan Card", class: "form-label", name: 'agreement[documents][aadhar_card]' %>
+            <%=  document_form.file_field :document, class: "form-control disabled", name: 'agreement[documents][aadhar_card]' %>
+          </div>
+          <div class="col-md-12">
+            <%= document_form.label :document, "Signature", class: "form-label", name: 'agreement[documents][signature]' %>
+            <%=  document_form.file_field :document, class: "form-control", name: 'agreement[documents][signature]' %>
+          </div>
+        <%end%>
         <div class="col-md-12">
-          <%=form.label :document, class: "form-label", value: "Addhar Card", name: 'agreement[documents][pan_card]' %>
-          <%= form.file_field :document, class: "form-control disabled", name: 'agreement[documents][pan_card]' %>
-        </div>
-        <div class="col-md-12">
-          <%=form.label :document, class: "form-label", value: "Pan Card", name: 'agreement[documents][aadhar_card]' %>
-          <%= form.file_field :document, class: "form-control disabled", name: 'agreement[documents][aadhar_card]' %>
-        </div>
-        <div class="col-md-12">
-          <%=form.label :document, class: "form-label", value: "Signature", name: 'agreement[documents][aadhar_card]' %>
-          <%= form.file_field :document, class: "form-control", name: 'agreement[documents][aadhar_card]' %>
-        </div>
-        <div class="col-md-12">
-          <%= form.check_box :agreement_status, class: "form-check-input mx-2", value: "accepted"  %>
+          <%= form.check_box :agreement_status, class: "form-check-input mx-2", value: "accepted" %>
           <%=form.label :agreement_status, class: "form-check-label", value: "Accept Terms & Conditions" %>
         </div>
         <div class="col-md-12">
-          <%= form.submit "Accept Agreement", class: "btn btn-dark btn-lg"%>
-          <%= link_to "Cancel Agreement", "#", class: "btn btn-secondary btn-lg"%>
+          <button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Accept & Pay Deposit
+          </button>
+          <!-- ============================ DEMO PAYMENT MODAL ================================== -->
+          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <%= render "payment", form: form %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ============================ DEMO PAYMENT MODAL  END ================================== -->
+
         </div>
       <%end%>
     </div>
   </div>
 </div>
+
+
+
+<!-- Modal -->
+
+<!-- Button trigger modal -->
+
+
 

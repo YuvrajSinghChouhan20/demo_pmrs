@@ -1,8 +1,12 @@
 class BookingsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :show_property_bookings, :update]
+  before_action :authenticate_user!, only: [:create, :index]
+
+  def index
+    @property = Property.find(params[:property_id])
+    @bookings = @property.bookings #.where('booking_status != ?', "approved")
+  end
 
   def create
-
     @property = Property.find(params[:property_id]);
 
     if @property.user == current_user
@@ -10,22 +14,18 @@ class BookingsController < ApplicationController
       return
     end
 
-    property_booking = {
-      booking_date: Date.today,
-      booking_for: @property.listed_for,
-      booking_status: "pending",
-      user_id: current_user.id
-    }
-    @booking = @property.bookings.find_or_create_by(property_booking);
-
-    if @booking
-      redirect_to property_path(@property), booking_notice: "Booking succesfully"
-    else
-      redirect_to properties_path, booking_notice: "Booking is fulled"
+    if @property.is_already_booked?(current_user)
+      redirect_to property_path(@property), alert: "Property Already Booked"
+      return
     end
-  end
+    property_booking = {booking_date: Date.today, booking_for: @property.listed_for, user: current_user }
+    @booking = @property.bookings.build(property_booking)
 
-  def update
+    if @booking.save!
+      redirect_to property_path(@property), notice: "Booking succesfully"
+    else
+      redirect_to properties_path, alert: "Booking is fulled"
+    end
   end
 
   def cancel_booking
@@ -36,10 +36,5 @@ class BookingsController < ApplicationController
     else
       redirect_to "#{property_path(property.id)}/bookings", booking_error_notice: "Something went wrong"
     end
-  end
-
-  def show_property_bookings
-    @property = Property.find(params[:property_id])
-    @bookings = @property.bookings #.where('booking_status != ?', "approved")
   end
 end

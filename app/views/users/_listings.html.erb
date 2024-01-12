@@ -14,7 +14,7 @@
             <td><%= property.property_name%></td>
             <td><%= property.status %></td>
             <td>
-              <%= link_to "See Bookings", "#{property_path(property.id)}/bookings" %>
+              <%= link_to "See Bookings", property_bookings_path(property) %>
               <%= link_to "Edit", edit_property_path(property) %>
               <%= button_to "Destroy", property_path(property), method: :delete %>
             </td>

@@ -8,9 +8,18 @@ class UsersController < ApplicationController
 
   def approve_booking_request
     @booking = Booking.find(params[:booking_id])
-    if @booking.update(booking_status: "approved")
-
+    if @booking.update!(booking_status: :confirmed)
+      puts "++=======================+++++++++++++++++++++++++++++++++++++++++++++++==========================="
+      retry_count = 3
+    begin
       @mail = UserMailer.with(user: @booking.user, property: @booking.property, booking: @booking ).booking_confirmation.deliver_later
+    rescue
+      retry_count -= 1
+      retry if retry_count.positive?
+      redirect_to property_bookings_path(@booking.property), alert: "Booking Approved, Mail not sent"
+      return
+    end
+
       # unless @booking.property.agreements.where('agreement_status !=?', "active")
 
         # =========== Agreement created for rent ===================
@@ -26,7 +35,7 @@ class UsersController < ApplicationController
         # end
       # end
 
-      redirect_to property_booking_approve_path, notice: "Booking Approved "
+      redirect_to property_bookings_path(@booking.property), notice: "Booking Approved "
 
     else
       redirect_to root_path, alert: "Booking not Approved"
