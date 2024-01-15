@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   root 'home#index'
   get "user/dashboard", to: "users#dashboard"
   devise_for :users, controllers: {
-    sessions: "users/sessions",
     registrations: "users/registrations"
   }
   resources :properties do
