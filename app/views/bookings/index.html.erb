@@ -1,0 +1,44 @@
+<% if flash[:booking_alert] || flash[:booking_notice]%>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong><%= flash[:alert] ? flash[:booking_alert] : flash[:booking_notice] %></strong> You should check in on some of those fields below.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end%>
+
+<% if flash[:mail_error_notice]%>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong><%= flash[:mail_error_notice] %></strong> You should check in on some of those fields below.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<%end%>
+
+<div class="container my-5" id="listing-container">
+  <h2 class="border-bottom border-1 p-3 my-4  fs-3">Booking Requests</h2>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Booking</th>
+          <th>Booking Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @bookings.each do |booking|%>
+          <tr>
+            <td><%= booking.user.full_name%></td>
+            <td><%= booking.booking_status %></td>
+            <td class="d-flex">
+                <%if booking.confirmed? && booking.property.agreement_already_created?(booking.user)%>
+                  <%= link_to "Create Agreement", new_property_booking_agreement_path(booking.property, booking), class: "btn btn-outline-dark properties-bookings d-inline  mx-1 " %>
+                <%else%>
+                  <%= button_to "Approve", property_booking_approve_path(booking.property, booking), method: :post, class: "btn btn-outline-dark properties-bookings d-inline mx-1  #{booking.confirmed? == "approved" ? "disabled" : ""}" %>
+                  <%= button_to "Cancel", property_booking_cancel_path(booking.property, booking), method: :patch, class: "btn btn-outline-dark properties-bookings d-inline  mx-1 #{booking.canceled? || booking.confirmed? ? "disabled" : ""}" %>
+                <%end%>
+            </td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -29,7 +29,6 @@
 }
 
 /* ================ Property Card ============================ */
-
 .property-card {
   background: #fff;
   text-align: left;
@@ -109,14 +108,7 @@
   font-size: 12px;
   text-transform: uppercase;
 }
-
-
 /* =========================== Porperty show style =====================================*/
-
-.property-info{
-
-}
-
 .property-info h3{
   font-size: 50px;
   font-weight: 700 !important;

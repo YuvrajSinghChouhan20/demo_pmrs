@@ -1,11 +1,7 @@
 :root{
-
   --main-black-color: #333333;
 }
-
-/*------------------------------------------------------------------
-    IMPORT FONTS
--------------------------------------------------------------------*/
+/*-----------------------------------------------------------------IMPORT FONTS------------------------------------------------------------------*/
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i');
 
 input, textarea, select{
@@ -26,9 +22,7 @@ body{
 .container-fluid{
   padding:0 !important;
 }
-
 /* =============== COMMON CSSS ============================== */
-
 h1,
 h2,
 h3,
@@ -124,21 +118,7 @@ h6 a {
 ul{
   list-style-type: none;
 }
-/* properties======================================================== */
-
-
-
-
-
-
-/* properties inner page  */
-
-
-
-
-/* ======================= */
-
-
+/* =======================  footer ==========================*/
 .footer {
   padding: 90px 0 80px !important;
   color: #999;
@@ -229,7 +209,6 @@ ul{
 }
 
 /* Footer left */
-
 .footer-distributed .footer-left {
   float: left;
 }
@@ -255,14 +234,12 @@ ul{
 
 
 /* Footer right */
-
 .footer-distributed .footer-right {
   float: right;
 }
 
 
 /* The search form */
-
 .footer-distributed form {
   position: relative;
 }
@@ -287,7 +264,6 @@ ul{
 
 
 /* Changing the placeholder color */
-
 .footer-distributed form input::-webkit-input-placeholder {
   color: #999;
 }
@@ -301,9 +277,7 @@ ul{
   color: #999;
 }
 
-
 /* The magnify glass icon */
-
 .footer-distributed form i {
   width: 18px;
   height: 18px;

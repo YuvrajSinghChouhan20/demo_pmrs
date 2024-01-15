@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-sm-12 mx-auto">
+    <div class="bg-white customRounded shadow-sm">
+      <div class="p-3 border-bottom">Pay By Card</div>
+      <div class="p-4">
+        <h6 class="mx-3 mb-3 text-secondary">Amount</h6>
+        <div class="border customRounded">
+          <div class="d-flex align-items-center justify-content-between p-3 customRounded">
+            <div>
+              <input type="radio" name="amount" id="customAmount"> <label for="customAmount" class="align-text-bottom ms-3">Enter Amount</label>
+            </div>
+            <div class="border p-2 customRounded" style="max-width:68px"><input type="text" class="text-center form-control border-0 p-0" placeholder="$0.00"></div>
+          </div>
+          <div class="border-top d-flex align-items-center justify-content-between p-3 ">
+            <div>
+              <input type="radio" name="amount" id="customAmount" checked> <label for="customAmount" class="align-text-bottom ms-3">Enter Amount</label>
+            </div>
+            <div class="p-2" ><strong>$288.00</strong></div>
+          </div>
+        </div>
+      </div>
+      <div class="px-4 pb-4">
+        <h6 class="mx-3 mb-3 text-secondary">Payment Method</h6>
+        <div class="border customRounded">
+          <div class="d-flex align-items-center justify-content-between p-3 customRounded">
+            <div class="d-flex align-items-center">
+              <input type="radio" name="paymentMethood" id="customAmount" checked>
+              <label for="customAmount" class="ms-3">
+                <strong>Ending With : **** 2288</strong><br />
+                <small class="text-secondary">Last used : 4 days ago</small>
+              </label>
+            </div>
+          </div>
+          <div class="border-top d-flex align-items-center justify-content-between p-3 ">
+            <div class="d-flex align-items-center">
+              <input type="radio" name="paymentMethood" id="customAmount">
+              <label for="customAmount" class="ms-3">
+                <strong>Ending With : **** 2828</strong><br />
+                <small class="text-secondary">Last used : 4 days ago</small>
+              </label>
+            </div>
+          </div>
+          <div class="border-top p-3">
+            <button class="btn btn-outline-secondary btn-sm">Add New Card</button>
+          </div>
+        </div>
+        <div class="text-end mt-4">
+          <button class="btn text-secondary w-25">Cancel</button>
+          <%= form.submit "Pay now", class: "btn btn-dark btn-lg btn-block"%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

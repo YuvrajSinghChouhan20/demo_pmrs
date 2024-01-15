@@ -1,19 +1,12 @@
 class PropertiesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_property, only: [:show, :edit, :update, :destroy]
   def index
-    @properties = Property.all #where(verified: true)
+    @properties = Property.all
   end
 
   def new
     @property = Property.new
-  end
-
-  def show
-    @property = Property.find(params[:id])
-  end
-
-  def edit
-    @property = Property.find(params[:id])
   end
 
   def create
@@ -24,7 +17,6 @@ class PropertiesController < ApplicationController
   end
 
   def update
-    @property = Property.find(params[:id])
     if @property.update(properties_params)
       redirect_to property_path(@property), notice: "Property Updated Succesfully"
     else
@@ -33,7 +25,6 @@ class PropertiesController < ApplicationController
   end
 
   def destroy
-    @property = Property.find(params[:id])
     if @property.destroy
       redirect_to user_dashboard_path(@property.user), notice: "Property Destroyed"
     else
@@ -47,5 +38,7 @@ class PropertiesController < ApplicationController
     params.require(:property).permit(:property_type, :sub_property_type, :property_name, :price, :listed_for, :address, :city, :state, :zipcode, :property_size, :property_about, images: [])
   end
 
-
+  def set_property
+    @property = Property.find(params[:id])
+  end
 end

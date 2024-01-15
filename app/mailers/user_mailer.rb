@@ -6,10 +6,6 @@ class UserMailer < ApplicationMailer
     @property = params[:property]
     @booking = params[:booking]
     @url = "localhost:/user/dashboard"
-    attachment_url = url_for(@property.agreements.last.document)
-
-    attachments['attached_file.pdf'] = @property.agreements.last.document.download
-
     mail(to: @user.email, property: @property, subject: 'Booking Approved')
   end
 
