@@ -1,15 +1,21 @@
 <% content_for :stylesheet do %>
   <%= stylesheet_link_tag "dashboard", "data-turbo-track": "reload"%>
 <%end%>
+<<<<<<< Updated upstream
 <div class="container-fluid">
+=======
+
+<div class="container-fluid ">
+>>>>>>> Stashed changes
   <div class="row dashboard-container p-3 m-0 rounded-4">
     <div class="col-md-2 right-pane border-opacity-10 d-flex p-0">
       <ul class="dashboard-side-menu p-0 mt-5">
         <li>
-          <button class="btn dashboard-btn " data-bs-dashboard-btn="dashboard" id="" >Dashboard</button>
+          <button class="btn dashboard-btn " data-bs-dashboard-btn="dashboard" id="dashboard" >Dashboard</button>
         </li>
         <li>
           <button class="btn dashboard-btn " data-bs-dashboard-btn="properties" id="" >My properties</button>
+          <!--<%= link_to "My Listings", user_listings_path, remote: true, class: "btn dashboard-btn", id: "listigs-btn", data_bs_dashboard_btn: "properties"%>-->
         </li>
         <li>
           <button class="btn dashboard-btn" data-bs-dashboard-btn="rented-property">Rented Property</button>
@@ -26,6 +32,7 @@
       </ul>
     </div>
     <div class="col-md-10 left-pane bg-light h-100 rounded-5 p-4">
+<<<<<<< Updated upstream
       <div id="listings">
         <% if current_user.properties && current_user.has_role?(:landlord) %>
           <%= render "listings", properties: current_user.properties.with_role(:landlord) %>
@@ -41,6 +48,9 @@
       </div>
       <div class="rented-property" id="rented-property">
         <%= render 'rented_property', rented_properties: current_user.agreements %>
+=======
+      <div class="data">
+>>>>>>> Stashed changes
       </div>
     </div>
   </div>

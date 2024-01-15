@@ -1,4 +1,5 @@
 class PropertiesController < ApplicationController
+  load_and_authorize_resource
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_property, only: [:show, :edit, :update, :destroy]
   def index

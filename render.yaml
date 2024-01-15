@@ -1,0 +1,22 @@
+databases:
+- name: prms
+  databaseName: prms
+  user: pmrs
+  plan: free
+
+services:
+- type: web
+  name: prms
+  runtime: ruby
+  plan: free
+  buildCommand: "./bin/render-build.sh"
+  startCommand: "./bin/rails server"
+  envVars:
+    - keys: DATABASE_URL
+      fromDatabase:
+        name: prms
+        property: connectionString
+    - key: RAILS_MASTER_KEY
+      sync: false
+    - Key: WEB_CONCURRENCY
+      value: 2

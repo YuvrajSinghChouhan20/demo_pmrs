@@ -9,6 +9,10 @@ class Property < ApplicationRecord
 
   enum property_status: { available: 1, rented: 2, sold: 3}
 
+
+  # ================ validations =========
+  enum property_status: { available: 1, rented: 2, sold: 3 }
+
   def has_active_agreement?
     self.agreements.where(agreement_status: "accepted").any?
   end

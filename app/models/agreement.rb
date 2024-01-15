@@ -4,7 +4,12 @@ class Agreement < ApplicationRecord
   belongs_to :booking
   has_one_attached :document_image, dependent: :destroy
   has_and_belongs_to_many :documents
+<<<<<<< Updated upstream
   has_one :security_deposit
+=======
+  has_one :security_deposit, dependent: :destroy
+
+>>>>>>> Stashed changes
   # callbacks
   before_create :set_status
   after_update :set_tenant
@@ -21,6 +26,6 @@ class Agreement < ApplicationRecord
   end
 
   def set_tenant
-    self.user.add_role :tenant
+    self.user.add_role :tenant, self.property
   end
 end

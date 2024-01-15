@@ -4,6 +4,7 @@ import "controllers"
 // importing javascript to java script
 import "popper"
 import "bootstrap"
+<<<<<<< Updated upstream
 document.addEventListener('turbo:load', function(event){
   const dashboardBtn = document.querySelectorAll('.dashboard-btn');
   const listings = document.getElementById('listings');
@@ -42,4 +43,60 @@ document.addEventListener('turbo:load', function(event){
   dashboardBtn.forEach(btn => {
     btn.addEventListener('click', (event)=>{applyListings(btn)});
   });
+=======
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("turbo:load", (event)=>{
+  // $(document).ready(function(){
+  //   console.log("console.is here")
+  //   $('.dashboard-btn').on("click", function(){
+  //     console.log($(this.dataset))
+  //   })
+  // })
+
+
+const dashboardBtn = document.querySelectorAll('.dashboard-btn');
+
+
+const switchDisplay =(dLiting, dBookings, dRented, dNotifications, dDashboard ='block' )=>{
+  listings.style.display = dLiting;
+  dashboard.style.display= dDashboard;
+  bookingsList.style.display= dBookings;
+  rentedProperty.style.display= dRented
+}
+const applyListings = (btn)=>{
+  if(btn.clicked)
+    btn.style.background = "#f8f9fa";
+
+  switch (btn.dataset.bsDashboardBtn) {
+    case "properties":
+      switchDisplay('block', 'none', 'none', 'none', "none");
+      break;
+    case "bookings":
+      switchDisplay('none', 'block' ,'none', 'none', 'none');
+      break;
+    case "dashboard":
+      switchDisplay('none', 'none' ,'none', 'none');
+      break;
+    case "rented-property":
+      switchDisplay('none', 'none' ,'block', 'none', 'none');
+      break;
+    default:
+      dashboard.style.display="block";
+      break;
+  }
+};
+
+dashboardBtn.forEach(btn => {
+  btn.addEventListener('click', (event)=>{applyListings(btn)});
+});
+>>>>>>> Stashed changes
 })

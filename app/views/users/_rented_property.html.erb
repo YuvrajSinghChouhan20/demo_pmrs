@@ -9,10 +9,19 @@
       </thead>
       <tbody>
         <% rented_properties.each do |property|%>
+<<<<<<< Updated upstream
           <tr>
             <td><%= property.property.property_name%></td>
             <td><%= property.property.property_status %></td>
           </tr>
+=======
+          <% if property.done? %>
+            <tr>
+              <td><%= property.property.property_name%></td>
+              <td><%= property.property.property_status %></td>
+            </tr>
+          <%end%>
+>>>>>>> Stashed changes
         <%end%>
       </tbody>
     </table>

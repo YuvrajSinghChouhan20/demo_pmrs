@@ -74,6 +74,8 @@ gem 'devise'
 
 gem 'rolify'
 
+gem "cancancan"
+
 gem 'letter_opener'
 
 gem 'prawn' #=========== for grnerating pdf =======
