@@ -48,7 +48,6 @@
           <%=form.label :end_date, class: "form-label"%>
           <%= form.date_field :end_date, class: "form-control disabled", disabled: true  %>
         </div>
-
         <%= form.fields_for :documents do |document_form|%>
           <div class="col-md-12">
             <%= document_form.label :document, "Aadhar Card", class: "form-label", name: 'agreement[documents][pan_card]' %>
@@ -81,18 +80,8 @@
             </div>
           </div>
           <!-- ============================ DEMO PAYMENT MODAL  END ================================== -->
-
         </div>
       <%end%>
     </div>
   </div>
 </div>
-
-
-
-<!-- Modal -->
-
-<!-- Button trigger modal -->
-
-
-

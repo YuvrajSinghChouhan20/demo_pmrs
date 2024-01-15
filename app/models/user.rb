@@ -7,10 +7,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
   has_many_attached :documents
   has_many :reviews
-
-  #  ===================== Model leve Valdations starts here
+  #  ===================== Valdations starts here ==============================
   validates :mobile, length: { minimum: 10 }
-
 
   def full_name
     self.first_name + " " + self.last_name
@@ -19,10 +17,12 @@ class User < ApplicationRecord
   def pending_agreements?
     self.agreements.where(agreement_status: :draft)
   end
+
   private
   def is_landlord?
     has_role? (:landlord)
   end
+
   def is_tenant?
     has_role? :tenent
   end
@@ -31,6 +31,7 @@ class User < ApplicationRecord
     add_role(:landlord, property)
     add_role :landlord
   end
+
   def add_tenant(agreement)
     add_role(:tenant, agreement.property)
     add_role :tenant

@@ -65,12 +65,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-
-
 gem "bootstrap"
 
 gem "sassc-rails"
-
 
 # ====================== Gem used==================
 gem 'devise'
@@ -87,8 +84,6 @@ gem 'prawn-icon' # ================= for adding  icons to pdf
 
 gem 'wicked'
 
-
 gem 'dotenv-rails', groups: [:development, :test]
-
 
 gem "byebug"

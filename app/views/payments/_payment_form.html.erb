@@ -5,7 +5,6 @@
         <div class="card-body p-4">
           <div class="text-center mb-4">
             <h3>Payment</h3>
-            <%# <h6>Payment</h6> %>
           </div>
           <%= form_with model: resource , url: resource_payments_path do |form|%>
             <p class="fw-bold mb-4 pb-2">Saved Card</p>
@@ -26,15 +25,11 @@
                 </div>
               </div>
             </div>
-
-            <%# <p class="fw-bold mb-4">Add new card:</p> %>
-
             <div class="form-outline mb-4">
               <label class="form-label" for="formControlLgXsd">Cardholder's Name</label>
               <input type="text" id="formControlLgXsd" class="form-control form-control-lg"
                 value="Anna Doe" />
             </div>
-
             <div class="row mb-4">
               <div class="col-7">
                 <div class="form-outline">
@@ -58,7 +53,6 @@
                 </div>
               </div>
             </div>
-
             <%= form.submit "Pay now", class: "btn btn-dark btn-lg btn-block"%>
           <% end %>
         </div>

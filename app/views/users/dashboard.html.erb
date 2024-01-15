@@ -1,11 +1,7 @@
 <% content_for :stylesheet do %>
   <%= stylesheet_link_tag "dashboard", "data-turbo-track": "reload"%>
 <%end%>
-
-<div class="container-fluid ">
-  <% if current_user.pending_agreements?%>
-    alert
-  <%end%>
+<div class="container-fluid">
   <div class="row dashboard-container p-3 m-0 rounded-4">
     <div class="col-md-2 right-pane border-opacity-10 d-flex p-0">
       <ul class="dashboard-side-menu p-0 mt-5">
@@ -30,7 +26,6 @@
       </ul>
     </div>
     <div class="col-md-10 left-pane bg-light h-100 rounded-5 p-4">
-
       <div id="listings">
         <% if current_user.properties && current_user.has_role?(:landlord) %>
           <%= render "listings", properties: current_user.properties.with_role(:landlord) %>
@@ -38,19 +33,15 @@
           <h1>No Listed Property</h1>
         <%end%>
       </div>
-
       <div class="dashboard" id="dashboard">
         <%= render partial: "dashboard"%>
       </div>
-
       <div class="bookings" id="bookings">
         <%= render 'booking_list', bookings: current_user.bookings %>
       </div>
-
       <div class="rented-property" id="rented-property">
         <%= render 'rented_property', rented_properties: current_user.agreements %>
       </div>
-
     </div>
   </div>
 </div>
