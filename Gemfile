@@ -86,6 +86,6 @@ gem 'prawn-icon' # ================= for adding  icons to pdf
 
 gem 'wicked'
 
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv-rails'
 
 gem "byebug"
