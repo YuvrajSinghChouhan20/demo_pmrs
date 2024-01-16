@@ -1,17 +1,3 @@
-<% if flash[:booking_alert] || flash[:booking_notice]%>
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <strong><%= flash[:alert] ? flash[:booking_alert] : flash[:booking_notice] %></strong> You should check in on some of those fields below.
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-<% end%>
-
-<% if flash[:mail_error_notice]%>
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <strong><%= flash[:mail_error_notice] %></strong> You should check in on some of those fields below.
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-<%end%>
-
 <div class="container my-5" id="listing-container">
   <h2 class="border-bottom border-1 p-3 my-4  fs-3">Booking Requests</h2>
   <div class="table-responsive">

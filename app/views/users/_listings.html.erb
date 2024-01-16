@@ -1,31 +1,19 @@
-<div class="container " id="listing-container">
-  <div class="table-responsive rounded-4">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Images</th>
-          <th>Status</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-<<<<<<< Updated upstream
-        <% properties.each do |property|%>
+<div class="container-fluid px-4" id="listing-container">
+  <% if properties.any? %>
+    <div class="table-responsive rounded-4">
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= property.property_name%></td>
-            <td><%= property.property_status %></td>
-            <td>
-              <%= link_to "See Bookings", property_bookings_path(property) %>
-              <%= link_to "Edit", edit_property_path(property) %>
-              <%= button_to "Destroy", property_path(property), method: :delete %>
-            </td>
+            <th>Images</th>
+            <th>Status</th>
+            <th>Action</th>
           </tr>
-        <%end%>
-=======
+        </thead>
+        <tbody>
           <% properties.each do |property|%>
             <tr>
               <td><%= property.property_name%></td>
-              <td><%= property.status %></td>
+              <td><%= property.property_status %></td>
               <td>
                 <%= link_to "See Bookings", property_bookings_path(property) %>
                 <%= link_to "Edit", edit_property_path(property) %>
@@ -33,8 +21,12 @@
               </td>
             </tr>
           <%end%>
->>>>>>> Stashed changes
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
+  <%else%>
+    <div class="row">
+      <h1 class="text-center">No Listed Property</h1>
+    </div>
+  <%end%>
   </div>
-</div>
