@@ -2,8 +2,31 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:dashboard, :approve_booking_request]
   before_action :property_belongs_to, only: [:approve_booking_request]
 
-  def dashboard
-    current_user
+  def listings
+    respond_to do |format|
+      properties= current_user.properties
+      format.html { render partial: 'users/listings', locals: { properties: properties}, status: 200 }
+      format.json { render partial: 'users/listings', locals: { properties: properties}, layout: false, status: 200 }
+      format.js
+    end
+  end
+
+  def rented_property
+    respond_to do |format|
+      properties = current_user.rented_properties
+      format.html { render partial: 'users/rented_property', locals: { rented_properties: properties}, status: 200 }
+      format.json { render partial: 'users/rented_property', locals: { rented_properties: properties}, layout: false, status: 200 }
+      format.js
+    end
+  end
+
+  def user_bookings
+    respond_to do |format|
+      bookings = current_user.bookings
+      format.html { render partial: 'users/booking_list', locals: { bookings: bookings }, status: 200 }
+      format.json { render partial: 'users/booking_list', locals: { bookings: bookings }, layout: false, status: 200 }
+      format.js
+    end
   end
 
   def approve_booking_request

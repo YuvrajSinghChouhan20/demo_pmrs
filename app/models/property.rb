@@ -6,8 +6,8 @@ class Property < ApplicationRecord
   has_many :agreements, dependent: :destroy
   has_many :reviews, dependent: :destroy
   before_create :set_property_status
-
-  enum property_status: { available: 1, rented: 2, sold: 3}
+  # ================ validations =========
+  enum property_status: { available: 1, rented: 2, sold: 3 }
 
   def has_active_agreement?
     self.agreements.where(agreement_status: "accepted").any?

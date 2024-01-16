@@ -1,45 +1,37 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
-import "@hotwired/turbo-rails"
-import "controllers"
+import "@hotwired/turbo-rails";
+import "controllers";
 // importing javascript to java script
-import "popper"
-import "bootstrap"
-document.addEventListener('turbo:load', function(event){
-  const dashboardBtn = document.querySelectorAll('.dashboard-btn');
-  const listings = document.getElementById('listings');
-  const bookingsList = document.getElementById('bookings');
-  const dashboard = document.getElementById('dashboard');
-  const notifications = document.getElementById('');
-  const rentedProperty = document.getElementById('rented-property');
-
-  const switchDisplay =(dLiting, dBookings, dRented, dNotifications, dDashboard ='block' )=>{
-    listings.style.display = dLiting;
-    dashboard.style.display= dDashboard;
-    bookingsList.style.display= dBookings;
-    rentedProperty.style.display= dRented
+import "popper";
+import "bootstrap";
+document.addEventListener("turbo:load", (event) => {
+  const dashboardBtn = document.querySelectorAll(".dashboard-btn");
+  const dashboardView = document.getElementById('dashboard-user-data')
+  async function sendRequest(url){
+    const response = await fetch(url);
+    const data = await response.text()
+    dashboardView.innerHTML = data
   }
-  const applyListings = (btn)=>{
-    if(btn.clicked)
-      btn.style.background = "#f8f9fa";
-    switch (btn.dataset.bsDashboardBtn) {
+  function addViewToDashboard(btn){
+    let url = ""
+    switch(btn.dataset.bsDashboardBtn){
       case "properties":
-        switchDisplay('block', 'none', 'none', 'none', "none");
-        break;
-      case "bookings":
-        switchDisplay('none', 'block' ,'none', 'none', 'none');
-        break;
-      case "dashboard":
-        switchDisplay('none', 'none' ,'none', 'none');
-        break;
+        btn.style.background = "#33333 "
+        sendRequest('/user/listings')
+        return
       case "rented-property":
-        switchDisplay('none', 'none' ,'block', 'none', 'none');
-        break;
+        sendRequest('/user/rented_properties')
+        return
+      case "bookings":
+        sendRequest('/user/bookings')
       default:
-        dashboard.style.display="block";
-        break;
     }
-  };
-  dashboardBtn.forEach(btn => {
-    btn.addEventListener('click', (event)=>{applyListings(btn)});
+  }
+  // initiallization http request response
+  dashboardBtn.forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+      console.log(btn.dataset)
+      addViewToDashboard(btn)
+    });
   });
-})
+});

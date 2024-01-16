@@ -5,8 +5,9 @@ class User < ApplicationRecord
 
   has_many :bookings, dependent: :destroy
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
-  has_many_attached :documents
+  # has_many_attached :documents
   has_many :reviews
+  has_many :documents
   #  ===================== Valdations starts here ==============================
   validates :mobile, length: { minimum: 10 }
 
@@ -16,6 +17,10 @@ class User < ApplicationRecord
 
   def pending_agreements?
     self.agreements.where(agreement_status: :draft)
+  end
+
+  def rented_properties
+    self.agreements.where(agreement_status: :done).map{|agreement| agreement.property }
   end
 
   private

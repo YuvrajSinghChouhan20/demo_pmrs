@@ -1,20 +1,26 @@
-<div class="container " id="listing-container">
-  <div class="table-responsive">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Images</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% rented_properties.each do |property|%>
+<div class="container-fluid px-4 " id="listing-container">
+  <% if rented_properties.any? %>
+    <div class="table-responsive rounded-4">
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= property.property.property_name%></td>
-            <td><%= property.property.property_status %></td>
+            <th>Images</th>
+            <th>Status</th>
           </tr>
-        <%end%>
-      </tbody>
-    </table>
-  </div>
+        </thead>
+        <tbody>
+            <% rented_properties.each do |property|%>
+                <tr>
+                  <td><%= property.property_name%></td>
+                  <td><%= property.property_status %></td>
+                </tr>
+            <%end%>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="row my-auto">
+      <h1>No Rented Propeties</h1>
+    </div>
+  <%end%>
 </div>

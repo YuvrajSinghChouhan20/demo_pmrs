@@ -4,10 +4,6 @@
 #listings{
   display: none;
 }
-.right-pane{
-  /* border-right: 1px solid #dee2e6; */
-}
-
 .dashboard-side-menu{
   width: 100%;
 }
@@ -21,9 +17,8 @@
   display: block;
   width: 100%;
   height: 100%;
-  background-color: transparent !important;
+  background-color: transparent;
   color: var(--main-black-color);
-  /* color: #f8f9fa; */
   font-weight: 500;
   font-size: 18px;
   border: none;
