@@ -1,12 +1,12 @@
 databases:
 - name: pmrs
   databaseName: prms
-  user: pmrs_user
+  user: pmrsuser
   plan: free
 
 services:
 - type: web
-  name: prms
+  name: PRMS
   runtime: ruby
   plan: free
   buildCommand: "./bin/render-build.sh"
@@ -19,4 +19,4 @@ services:
     - key: RAILS_MASTER_KEY
       sync: false
     - Key: WEB_CONCURRENCY
-      value: 2
+      value: 4
