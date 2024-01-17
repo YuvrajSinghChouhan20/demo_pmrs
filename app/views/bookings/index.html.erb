@@ -15,7 +15,7 @@
             <td><%= booking.user.full_name%></td>
             <td><%= booking.booking_status %></td>
             <td class="d-flex">
-                <%if booking.confirmed? && booking.property.agreement_already_created?(booking.user)%>
+                <%if booking.confirmed? && !booking.property.agreement_already_created?(booking.user)%>
                   <%= link_to "Create Agreement", new_property_booking_agreement_path(booking.property, booking), class: "btn btn-outline-dark properties-bookings d-inline  mx-1 #{booking.property.has_active_agreement? ? "disabled" : ""}" %>
                 <%elsif%>
                   <%= button_to "Approve", property_booking_approve_path(booking.property, booking), method: :post, class: "btn btn-outline-dark properties-bookings d-inline mx-1  #{booking.confirmed? ? "disabled" : ""}" %>

@@ -3,6 +3,7 @@ class AgreementsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_agreement, only: [:edit, :update]
   before_action :set_booking, only: [:new, :create]
+
   def create
     property = @booking&.property
     user = @booking&.user
@@ -11,7 +12,9 @@ class AgreementsController < ApplicationController
       redirect_to property_bookings_path(property), notice: "Already Created"
       return
     end
+    byebug
     agreement = property.agreements.build(agreement_params)
+    byebug
     if agreement.save!
       @mail = UserMailer.with(user: user, property: property, agreement: agreement).agreement_created.deliver_later
       redirect_to property_bookings_path(property), notice: "Agreement Created and Mailed Succesfully"
@@ -38,9 +41,9 @@ class AgreementsController < ApplicationController
 
   private
   def agreement_params
-    user = @booking.user
-    params[:agreement][:terms_and_conditions] = params[:agreement][:terms_and_conditions].split("\n")
-    params.require(:agreement).permit(:duration, :start_date, :end_date, :amount, :agreement_status, :security_amount, :maintance_amount, :user_id, terms_and_conditions:[], documents:[]).merge!({user: user, booking_id: @booking.id})
+    booking = Booking.find(params[:booking_id])
+    params[:agreement][:terms_and_conditions] = params[:agreement][:terms_and_conditions].split("\n").flatten
+    params.require(:agreement).permit(:duration, :start_date, :end_date, :amount, :agreement_status, :security_amount, :maintance_amount, :user_id, terms_and_conditions: [], documents: []).merge!({user: booking.user, booking_id: booking.id})
   end
 
   def set_agreement
@@ -52,7 +55,6 @@ class AgreementsController < ApplicationController
   end
 
   def create_document(document_type, documents_user)
-    # Document.create(document_name: document_type, user: documents_user, images: params[:agreement][:documents][document_type])
     documents_user.documents.create(document_name: document_type, images: params[:agreement][:documents][document_type])
   end
 

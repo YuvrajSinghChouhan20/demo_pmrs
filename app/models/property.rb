@@ -39,6 +39,6 @@ class Property < ApplicationRecord
 
   private
   def set_property_status
-    self.status = "Available"
+    self.property_status = :available
   end
 end
