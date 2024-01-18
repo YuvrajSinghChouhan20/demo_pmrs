@@ -5,6 +5,7 @@ class Agreement < ApplicationRecord
   has_one_attached :document_image, dependent: :destroy
   has_and_belongs_to_many :documents
   has_one :security_deposit, dependent: :destroy
+  has_many :rents
   # callbacks
   before_create :set_status
   after_update :set_tenant

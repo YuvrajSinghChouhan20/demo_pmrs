@@ -25,6 +25,6 @@ module PropertyRentalManagmentSystem
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.action_dispatch.rescue_responses.merge!('CanCan::AccessDenied' => :unauthorized)
-
+    config.active_job.queue_adapter = :sidekiq
   end
 end

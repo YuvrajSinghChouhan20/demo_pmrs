@@ -1,7 +1,7 @@
 databases:
   - name: PRMS
     databaseName: PRMS
-    user: mysite
+    user: PRMS
     plan: free
 
 services:

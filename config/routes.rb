@@ -1,10 +1,14 @@
+require 'sidekiq/web'
+require 'sidekiq/cron/web'
+
 Rails.application.routes.draw do
-  get 'rent/create'
-  get 'rent/update'
   root 'home#index'
   devise_for :users, controllers: {
     registrations: "users/registrations"
   }
+  authenticate :user do
+    mount Sidekiq::Web => "/sidekiq"
+  end
   get "/user/dashboard", to: "users#dashboard"
   get "/user/listings", to: "users#listings"
   get "/user/rented_properties", to: "users#rented_property"

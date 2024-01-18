@@ -80,6 +80,10 @@ gem 'prawn' #=========== for grnerating pdf =======
 
 gem 'prawn-table' # ================== for generating tables =============="
 
-gem 'dotenv-rails'
+# gem 'dotenv-rails'
 
 gem "byebug"
+
+gem "sidekiq"
+
+gem 'sidekiq-cron'

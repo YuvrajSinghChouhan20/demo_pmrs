@@ -23,6 +23,11 @@ class User < ApplicationRecord
     self.agreements.where(agreement_status: :done).map{|agreement| agreement.property }
   end
 
+  def self.needs_to_pay_rent
+    today_plus_3_days = Date.today + 3.days
+    Agreement.joins(:user).where(agreements: { agreement_status: :done, start_date: Date.today.beginning_of_day..today_plus_3_days.end_of_day }).distinct
+  end
+
   private
   def is_landlord?
     has_role? (:landlord)

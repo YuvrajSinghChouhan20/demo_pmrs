@@ -81,13 +81,15 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'localhost:3000', protocol: 'http'}
 
+  config.active_job.queue_adapter = :sidekiq
+
   # =========================== SMTP ====================
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: '587',
-    user_name: ENV['MAIL_USERNAME'],
-    password: ENV['MAIL_PASSWORD'],
+    user_name: 'yuvrajsinghchouhan664@gmail.com',
+    password: 'meeqmsplexkcfjjh',
     authentication: 'plain',
     enable_starttls: true,
     open_timeout: 30,

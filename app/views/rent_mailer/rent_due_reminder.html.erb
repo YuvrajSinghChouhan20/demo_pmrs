@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Rent Payment </h1>
+    <p>
+      Dear, <%= @user.full_name %>
+    </p>
+    <p>You'r rent for the Property <%= @property.id %> is due on the date <%= Date.today + 3.days %></p>
+    <p>To read and  accept all the tearms and conditions And proceed for the further process, </p>
+    <p><%= link_to "click here", '#', class: "btn btn-lg btn-dark d-block", style: "background: #333333; color: white; padding: 8px 20px; font-size: 30px; text-decoration: none; border-radius: 0.2rem" %></p>
+    <p>Thanks for choosing <strong>Tenento</strong></p>
+  </body>
+</html>
