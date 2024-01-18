@@ -82,8 +82,10 @@ gem 'prawn-table' # ================== for generating tables =============="
 
 # gem 'dotenv-rails'
 
-# gem "byebug"
+gem "byebug"
 
-# gem "sidekiq"
+gem "sidekiq"
 
-# gem 'sidekiq-cron'
+gem 'sidekiq-cron'
+
+gem "matrix", "~> 0.4.2"
